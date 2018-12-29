@@ -1,0 +1,21 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "run test",
+            "type": "lldb",
+            "request": "launch",
+            "internalConsoleOptions": "openOnSessionStart",
+            "preLaunchTask": "cargo build test",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/target/debug/sort_rust-ea9a98c8440164fe",
+            "env": {},
+            "args": [
+                "--test"
+            ],
+        }
+    ]
+}
