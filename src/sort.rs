@@ -10,7 +10,7 @@ fn item_compare(index: &HashMap<String, i32>, a: &String, b: &String) -> Orderin
 #[allow(dead_code)]
 fn make_item_comparer<'a>(
     index: &'a HashMap<String, i32>,
-) -> impl FnMut(&'a String, &'a String) -> Ordering {
+) -> impl FnMut(&String, &String) -> Ordering + 'a {
     return move |a, b| item_compare(&index, a, b);
 }
 
@@ -27,11 +27,7 @@ mod tests {
 
         let mut list = vec!["a".to_string(), "b".to_string(), "c".to_string()];
 
-        // this works!
-        list.sort_by(|a, b| item_compare(&index, a, b));
-
-        // how to make this work?
-        // list.sort_by(make_item_comparer(&index));
+        list.sort_by(make_item_comparer(&index));
 
         assert_eq!(
             list,
