@@ -1,17 +1,15 @@
 use std::cmp::Ordering;
 use std::collections::HashMap;
 
-fn item_compare(index: &HashMap<String, i32>, a: &String, b: &String) -> Ordering {
-    let ia = index.get(a).unwrap();
-    let ib = index.get(b).unwrap();
-    return ia.cmp(ib);
-}
-
 #[allow(dead_code)]
 fn make_item_comparer<'a>(
     index: &'a HashMap<String, i32>,
 ) -> impl FnMut(&String, &String) -> Ordering + 'a {
-    return move |a, b| item_compare(&index, a, b);
+    return move |a, b| {
+        let ia = index.get(a).unwrap();
+        let ib = index.get(b).unwrap();
+        return ia.cmp(ib);
+    };
 }
 
 #[cfg(test)]
